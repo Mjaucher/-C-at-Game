@@ -1,6 +1,43 @@
 #include "console_utils.h"
 #include <stdio.h>
 
+void putChar(int x, int y, char c) {
+
+    setCursor(x, y);
+    putchar(c);
+}
+
+int* getMouse() {
+
+    HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);
+
+    int* mouse = malloc(sizeof(int) * 3);
+
+    INPUT_RECORD ir;
+    DWORD count;
+
+    ReadConsoleInput(hIn, &ir, 1, &count);
+
+    if (ir.EventType == MOUSE_EVENT) {
+
+        MOUSE_EVENT_RECORD m = ir.Event.MouseEvent;
+
+        if (m.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
+
+            mouse[0] = 1;
+
+        } else if (m.dwButtonState & RIGHTMOST_BUTTON_PRESSED) {
+
+            mouse[0] = 2;
+        }
+
+        mouse[1] = m.dwMousePosition.X;
+        mouse[2] = m.dwMousePosition.Y;
+    }
+
+    return mouse;
+}
+
 void disableQuickEdit() {
 
     HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);

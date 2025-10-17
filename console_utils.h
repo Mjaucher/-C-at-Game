@@ -11,6 +11,8 @@
 #define HEIGHT 32
 #endif
 
+void putChar(int x, int y, char c);
+int* getMouse();
 void setCursor(int x, int y);
 void hideCursor();
 void setScreen(char background);
