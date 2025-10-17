@@ -3,4 +3,9 @@ project(cat C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(cat main.c)
+add_executable(
+
+        cat main.c
+        console_utils.h
+        console_utils.c
+)
