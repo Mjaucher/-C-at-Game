@@ -52,7 +52,7 @@ void hideCursor() {
     SetConsoleCursorInfo(h, &cci);
 }
 
-void clearScreen() {
+void setScreen(char background) {
 
     COORD topLeft = {0, 0};
     DWORD written, cells;
@@ -64,6 +64,6 @@ void clearScreen() {
 
     cells = info.dwSize.X * info.dwSize.Y;
 
-    FillConsoleOutputCharacter(h, ' ', cells, topLeft, &written);
+    FillConsoleOutputCharacter(h, background, cells, topLeft, &written);
     SetConsoleCursorPosition(h, topLeft);
 }

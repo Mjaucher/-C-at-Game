@@ -13,7 +13,7 @@
 
 void setCursor(int x, int y);
 void hideCursor();
-void clearScreen();
+void setScreen(char background);
 void fixConsoleSize();
 void disableQuickEdit();
 
